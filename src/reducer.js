@@ -17,7 +17,7 @@ const initialState = {
         },
         {
             description: 'Eat something',
-            done: false,
+            done: true,
             id: 2
         },
         {
@@ -76,6 +76,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.map(item => item.id == action.payload ? item.done = true : item.done = false)
             }
+        default: return state
     }
 }
 
