@@ -52,6 +52,11 @@ const TodoList = () => {
     }
 
     const renderTodos = (array) => {
+        
+        if (array.length == 0) {
+            return <Typography variant="h5" sx={{fontWeight:'300', color: '#cccccc'}}>Add new task</Typography>
+        }
+        
         const arr = array.map((item, i) => {
             return (
                 <div key={item.id} onClick={() => checkItem(item.id)}>
