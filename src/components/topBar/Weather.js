@@ -15,7 +15,7 @@ const Weather = () => {
     const [load, setLoad] = useState(false);
     
     useEffect(() => {
-        axios('http://api.openweathermap.org/data/2.5/weather?q=Moscow,ru&lang=ru&units=metric&APPID=efac8ea240bff691ede8922ddfa1d241')
+        axios('https://api.openweathermap.org/data/2.5/weather?q=Moscow,ru&lang=ru&units=metric&APPID=efac8ea240bff691ede8922ddfa1d241')
             .then(res => {
                 setWeather((+res.data.main.temp).toFixed())
                 setIcon(res.data.weather[0].main);
