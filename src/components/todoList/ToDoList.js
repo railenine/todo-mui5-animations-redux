@@ -11,19 +11,42 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
-import { useSelector } from "react-redux";
-import { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import { itemDone, itemCreated } from "../../actions";
+
+
+
 
 const TodoList = () => {
     
     const todos = useSelector(state => state.todos);
+    const dispatch = useDispatch();
+    const [newItem, setNewItem] = useState('');
 
-    console.log(todos)
+    const checkItem = (id) => {
+        console.log(id)
+        dispatch(itemDone(id))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const id = uuidv4();
+        const item = {
+            description: newItem,
+            done: false,
+            id: id
+        }
+        dispatch(itemCreated(item));
+        setNewItem('')
+    }
 
     const renderTodos = (array) => {
         const arr = array.map((item, i) => {
             return (
-                <Fragment key={item.id}>
+                <div key={item.id} onClick={() => checkItem(item.id)}>
                     <ListItem button>
                         <ListItemText>
                             <Grid container>
@@ -52,7 +75,7 @@ const TodoList = () => {
                         </ListItemText>
                     </ListItem>
                     {i == (array.length - 1) ? null : <Divider />} 
-                </Fragment>
+                </div>
             )
         })
         return arr
@@ -81,10 +104,14 @@ const TodoList = () => {
                         marginBottom: '20px'  
                     }}
                     variant='outlined'
+                    onSubmit={handleSubmit}
                 >               
                     <InputBase
-                      sx={{ m: '10px', flex: 1, fontWeight: '300', fontSize: '20px' }}
-                      placeholder="What needs to be done?"
+                        sx={{ m: '10px', flex: 1, fontWeight: '300', fontSize: '20px' }}
+                        placeholder="What needs to be done?"
+                        value={newItem}
+                        onChange={e => setNewItem(e.target.value)}
+                        
                     />
                 </Paper>
                 <List  component="nav" aria-label="mailbox folders">
