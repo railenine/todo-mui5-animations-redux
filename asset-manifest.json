@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/todo-mui5-redux/static/css/main.a8ddc29b.css",
+    "main.js": "/todo-mui5-redux/static/js/main.56d67085.js",
+    "index.html": "/todo-mui5-redux/index.html",
+    "main.a8ddc29b.css.map": "/todo-mui5-redux/static/css/main.a8ddc29b.css.map",
+    "main.56d67085.js.map": "/todo-mui5-redux/static/js/main.56d67085.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a8ddc29b.css",
+    "static/js/main.56d67085.js"
+  ]
+}
