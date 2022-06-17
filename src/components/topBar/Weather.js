@@ -32,16 +32,12 @@ const Weather = () => {
         switch(string) {
             case 'Clouds':
                 return <CloudIcon fontSize="large" />
-                break;
             case 'Rain':
                 return <ThunderstormIcon fontSize="large" />
-                break;
             case 'Snow':
                 return <AcUnitIcon fontSize="large" />
-                break;
             case 'Clear':
                 return <WbSunnyIcon fontSize="large" />
-                break;
             default:
                 return <WbSunnyIcon fontSize="large" />
         }

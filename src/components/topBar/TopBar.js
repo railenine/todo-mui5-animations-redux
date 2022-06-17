@@ -4,8 +4,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import Weather from "./Weather";
+import Clock from "./Clock";
 
 const TopBar = () => {
+    
+    console.log('render')
+    
     return (
         <Container maxWidth="sm">
             <Typography 
@@ -45,9 +49,7 @@ const TopBar = () => {
                             textAlign: 'center'
                         }}
                     >
-                        <Typography variant="h3">
-                            22:05
-                        </Typography>
+                        <Clock />
                     </Paper>
                 </Grid>
             </Grid>
