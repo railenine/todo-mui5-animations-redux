@@ -18,13 +18,12 @@ import { v4 as uuidv4 } from "uuid";
 import { itemDone, itemCreated } from "../../actions";
 
 
-
-
 const TodoList = () => {
     
     const todos = useSelector(state => state.todos);
     const dispatch = useDispatch();
     const [newItem, setNewItem] = useState('');
+    const [check, setCheck] = useState(false);
 
     const checkItem = (id) => {
         console.log(id)
@@ -90,6 +89,7 @@ const TodoList = () => {
                 sx={{
                     textAlign: 'center',
                     marginTop: '20px',
+                    marginBottom: '20px',
                     borderRadius: '10px',
                     padding: '10px'
                 }}

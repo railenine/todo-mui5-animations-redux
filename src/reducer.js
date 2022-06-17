@@ -28,12 +28,12 @@ const reducer = (state = initialState, action) => {
         case 'ITEM_DONE': 
             const arr = state.todos.map(item => {
                 if (item.id == action.payload) {
-                    item.done = true;
+                    return item.done = true
                 }
             })
             return {
                 ...state,
-                todos: arr
+                todos:[...state.todos, arr]
             }
         default: return state
     }

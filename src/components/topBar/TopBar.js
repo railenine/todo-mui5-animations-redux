@@ -2,7 +2,8 @@ import { Container } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+
+import Weather from "./Weather";
 
 const TopBar = () => {
     return (
@@ -32,16 +33,7 @@ const TopBar = () => {
                             textAlign: 'center',
                         }}
                     >
-                        <Grid container>
-                            <Grid item xs={6}>
-                                <Typography variant="h3">
-                                    +24
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <WbSunnyIcon fontSize="large" />
-                            </Grid>
-                        </Grid>
+                        <Weather />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={6}>
