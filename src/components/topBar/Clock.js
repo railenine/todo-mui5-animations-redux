@@ -7,13 +7,14 @@ const Clock = () => {
     const [hour, setHour] = useState();
     const [minute, setMinute] = useState();
 
-    //const hour = dayjs().hour();
-    //const minute = dayjs().minute();
-
     const timer = () => {
         setInterval(() => {
-            setHour(dayjs().hour());
-            setMinute(dayjs().minute());
+        
+            const hours = dayjs().hour() < 10 ? '0' + dayjs().hour() : dayjs().hour();
+            const minutes = dayjs().minute() < 10 ? '0' + dayjs().minute() : dayjs().minute();
+            
+            setHour(hours);
+            setMinute(minutes);
         }, 60);
     }
     

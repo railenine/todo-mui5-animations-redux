@@ -11,3 +11,28 @@ export const itemDone = (id) => {
         payload: id
     }
 }
+
+export const filterAll = () => {
+    return {
+        type: 'FILTER_ALL'
+    }
+}
+
+export const filterActive = () => {
+    return {
+        type: 'FILTER_ACTIVE'
+    }
+}
+
+export const filterDone = () => {
+    return {
+        type: 'FILTER_DONE'
+    }
+}
+
+export const deleteItem = (id) => {
+    return {
+        type: 'DELETE_ITEM',
+        payload: id
+    }
+}

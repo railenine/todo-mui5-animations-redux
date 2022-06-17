@@ -12,18 +12,21 @@ import Button from "@mui/material/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { itemDone, itemCreated } from "../../actions";
+import { itemDone, itemCreated, filterDone, filterActive, filterAll, deleteItem } from "../../actions";
 
 
 const TodoList = () => {
     
-    const todos = useSelector(state => state.todos);
+    const todos = useSelector(state => state.filteredTodos);
     const dispatch = useDispatch();
     const [newItem, setNewItem] = useState('');
-    const [check, setCheck] = useState(false);
+
+    useEffect(() => {
+        dispatch(filterAll());
+    }, []);
 
     const checkItem = (id) => {
         console.log(id)
@@ -38,7 +41,13 @@ const TodoList = () => {
             done: false,
             id: id
         }
-        dispatch(itemCreated(item));
+
+        if (!newItem.replace(/\s/g, '').length > 0) {
+            return
+        } else {
+            dispatch(itemCreated(item));
+        }
+
         setNewItem('')
     }
 
@@ -46,7 +55,7 @@ const TodoList = () => {
         const arr = array.map((item, i) => {
             return (
                 <div key={item.id} onClick={() => checkItem(item.id)}>
-                    <ListItem button>
+                    <ListItem sx={{cursor: 'pointer'}}>
                         <ListItemText>
                             <Grid container>
                                 <Grid item xs={1}>
@@ -66,14 +75,14 @@ const TodoList = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <Button>
+                                    <Button onClick={() => dispatch(deleteItem(item.id))}>
                                         <DeleteIcon />
                                     </Button>
                                 </Grid>
                             </Grid>
                         </ListItemText>
                     </ListItem>
-                    {i == (array.length - 1) ? null : <Divider />} 
+                    {i === (array.length - 1) ? null : <Divider />} 
                 </div>
             )
         })
@@ -128,9 +137,9 @@ const TodoList = () => {
                         }
                     }}
                 >
-                    <Button>All</Button>
-                    <Button>Active</Button>
-                    <Button>Done</Button>
+                    <Button onClick={() => dispatch(filterAll())}>All</Button>
+                    <Button onClick={() => dispatch(filterActive())}>Active</Button>
+                    <Button onClick={() => dispatch(filterDone())}>Done</Button>
                 </ButtonGroup>
             </Paper>
         </Container>
